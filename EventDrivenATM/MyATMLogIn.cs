@@ -30,7 +30,6 @@ namespace EventDrivenATM
                 Console.WriteLine("Invalid input\n\nINVALID OPTION");
                 goto start;
             }
-
         }
 
         public static void StartProcess()

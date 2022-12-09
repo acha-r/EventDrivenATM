@@ -1,25 +1,20 @@
 ﻿namespace EventDrivenATM
 {
-    internal class ATMActivities
+    internal partial class ATMActivities
     {
         internal static void TakeAction()
         {
             ATMConsoleOutput.TakeActionOutput();
             string userInput = Console.ReadLine();
+            Console.Clear();
 
             switch (userInput)
             {
                 case "1":
-                    //Withdrawal();
-                    GetValidAmount();
-                    Console.WriteLine("Withdrwa");
+                    Withdrawal();
                     break;
                 case "2":
-                    //Transfer();
-                    Console.WriteLine("Withdrwa");
-                    break;
-                case "3":
-                    //CheckBalance();
+                    Transfer();
                     break;
                 case "0":
                     ATMConsoleOutput.TakeAction2();
@@ -31,23 +26,64 @@
             }
         }
 
-        public static double GetValidAmount()
+        private static void Withdrawal()
         {
-        start:
-            double currentBal = MyATMLogIn.GetBal();
-            double amount;
-            ATMConsoleOutput.EnterAmt();
-            try
+            double availableBal = MyATMLogIn.GetBal();
+            double amount = GetValidAmount();
+            double currentBal = availableBal - amount;
+
+            ATMConsoleOutput.PleaseWait();
+            Thread.Sleep(1000);
+            ATMConsoleOutput.WithdrawalOutput();
+
+            string nextSteps = Console.ReadLine();
+            Console.Clear();
+
+            switch (nextSteps)
             {
-                string amountString = Console.ReadLine();
-                if (!double.TryParse(amountString, out amount) && amount > 100) throw new Exception();
+                case "0":
+                    Console.WriteLine($"\nDebit\nAmt: ${amount}\nAcc: 002******890\nDesc:000GenesysTechHub/ATM/bezao\nTime:{DateTime.Now}" +
+                            $"\nAvailBal: ${currentBal}\n");
+                    ATMConsoleOutput.Thankyou();
+                    break;
+                case "1":
+                    NextSteps();
+                    break;
+                default:
+                    ATMConsoleOutput.InvalidInput();
+                    NextSteps();
+                    break;
             }
-            catch (Exception)
-            {
-                Console.WriteLine("Amount must be a number greater than 100");
-                goto start;
-            }
-            return amount;
         }
+
+        private static void Transfer()
+        {
+            double amount = GetValidAmount();
+            double currBal = MyATMLogIn.GetBal() - amount;
+
+            GetAcctDetails();
+            ATMConsoleOutput.PleaseWait();
+            Thread.Sleep(1000);
+            ATMConsoleOutput.WithdrawalOutput();
+
+            string nextSteps = Console.ReadLine();
+            Console.Clear();
+
+            switch (nextSteps)
+            {
+                case "0":
+                    Console.WriteLine($"\nDebit\nAmt: ${amount}\nAcc: 002******890\nDesc:000GenesysTechHub/ATM/bezao\nTime:{DateTime.Now}" +
+                            $"\nAvailBal: ${currBal}\n");
+                    ATMConsoleOutput.Thankyou();
+                    break;
+                case "1":
+                    NextSteps();
+                    break;
+                default:
+                    ATMConsoleOutput.InvalidInput();
+                    NextSteps();
+                    break;
+            }
+        }      
     }
 }

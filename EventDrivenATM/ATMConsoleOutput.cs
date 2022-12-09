@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EventDrivenATM
+﻿namespace EventDrivenATM
 {
     internal class ATMConsoleOutput
     {
@@ -39,9 +37,9 @@ namespace EventDrivenATM
         public static void TakeActionOutput()
         {
             if (MyATMLogIn.language == "1") Console.WriteLine("\nWhat would you like to do? Press\n\n" +
-                "1. For withdrawal\n\n2. For transfer\n\n3. To check Balance\n\nPress 0 to cancel");
+                "1. For withdrawal\n\n2. For transfer\n\nPress 0 to cancel");
             if (MyATMLogIn.language == "2") Console.WriteLine("\nQu'est-ce que tu aimerais faire? Presse\n\n" +
-                "1. Pour le retrait\n\n2. Pour transfert\n\n3. Pour vérifier le solde\n\nAppuyez sur 0 pour annuler\n");
+                "1. Pour le retrait\n\n2. Pour transfert\n\nAppuyez sur 0 pour annuler\n");
         }
 
         public static void TakeAction2()
@@ -56,6 +54,50 @@ namespace EventDrivenATM
             if (MyATMLogIn.language == "2") Console.WriteLine("\nEntrez le montant ci-dessous:\n");
         }
 
+        public static void WithdrawalOutput()
+        {
+            if (MyATMLogIn.language == "1") Console.WriteLine("\nTake your cash\n\nPress 0 to print receipt" +
+                "\nPress 1 to continue");
+            if (MyATMLogIn.language == "2") Console.WriteLine("\nPrenez votre argent\nPresse 0 pour imprimer" +
+                "le reçu.\nPresse 1");
+        }
+
+        public static void Thankyou()
+        {
+            if (MyATMLogIn.language == "1") Console.WriteLine("\nThank you for banking with us\n");
+            if (MyATMLogIn.language == "2") Console.WriteLine("Merci de faire affaire avec nous\n");
+        }
+
+        public static void NextStepsOutPut()
+        {
+            if (MyATMLogIn.language == "1") Console.WriteLine("Press\n1. To return to previous menu.\n2. To end");
+            if (MyATMLogIn.language == "2") Console.WriteLine("Press\n1. Pour revenir au menu précédent\n\n2. Pour finir\n");
+        }
+
+        public static void ValidAmt1()
+        {
+            if (MyATMLogIn.language == "1") Console.WriteLine("\nInsufficient funds\n");
+            if (MyATMLogIn.language == "2") Console.WriteLine("\nFonds insuffisants\n");
+        }
+
+        public static void GetAcctDetails1()
+        {
+            if (MyATMLogIn.language == "1") Console.WriteLine("Enter account number");
+            if (MyATMLogIn.language == "2") Console.WriteLine("\nEntrez le numéro de compte\n");
+        }
+
+        public static void GetAcctDetails2()
+        {
+            if (MyATMLogIn.language == "1") Console.WriteLine("\nSelect bank\n\n1. Zenith Bank\n" +
+                "2. Access Bank\n3. Wema Bank\n4. AchA Bank\n");
+            if (MyATMLogIn.language == "2") Console.WriteLine("\nSélectionnez la banque\n\n" +
+                "1. Zenith Bank\n2. Access Bank\n3. Wema Bank\n4. AchA Bank\n");
+        }
+        public static void ValidAmt2()
+        {
+            if (MyATMLogIn.language == "1") Console.WriteLine("\nAmount must be a number greater than 100\n");
+            if (MyATMLogIn.language == "2") Console.WriteLine("Le montant doit être jusqu'à 100");
+        }
 
         public static void GetPinOutput1()
         {
